@@ -2,7 +2,7 @@
 
 /**
  * get_environ - func to return string array copy of the environ
- * @info: Struct with potential args maintaining 
+ * @info: Struct with potential args maintaining
  * constant function prototype
  * Return: Always 0
  */
@@ -20,7 +20,7 @@ char **get_environ(info_t *info)
 
 /**
  * _unsetenv - func removes an envirn variable
- * @info: Struct with potential args maintaining 
+ * @info: Struct with potential args maintaining
  * constant function prototype
  * Return: 1(delete) or 0(otherwise)
  * @var: string env variable property
@@ -52,9 +52,9 @@ int _unsetenv(info_t *info, char *var)
 }
 
 /**
- * _setenv - to nitialize a new environ 
+ * _setenv - to nitialize a new environ
  * variable or modify an existing one
- * @info: struct with potential args maintaining 
+ * @info: struct with potential args maintaining
  * constant function prototype
  * @var: string environ variable property
  * @value: string environ variable value

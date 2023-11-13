@@ -46,7 +46,7 @@ int hsh(info_t *info, char **av)
 /**
  * find_builtin - func to locate builtin command
  * @info: parameter and return info structure
- * Return: -1(not found), 0(executed successfully) 
+ * Return: -1(not found), 0(executed successfully)
  * 1(found but not successful) -2(builtin signals exit())
  */
 

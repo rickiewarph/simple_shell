@@ -31,7 +31,8 @@ int _myexit(info_t *info)
 
 /**
  * _mycd - function that changes current directory
- * @info: Struct with potential arguments maintaining constant function prototype.
+ * @info: Struct with potential arguments
+ * maintaining constant function prototype.
  *  Return: 0(Always)
  */
 

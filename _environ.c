@@ -2,7 +2,7 @@
 
 /**
  * _myenv - func to print current environment
- * @info: Struct with potential arguments maintaining 
+ * @info: Struct with potential arguments maintaining
  * constant function prototype
  * Return: Always 0
  */
@@ -36,9 +36,9 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - function nitializing new environment variable 
+ * _mysetenv - function nitializing new environment variable
  * or modifying an existing one
- * @info: Struct with potential arguments maintaining 
+ * @info: Struct with potential arguments maintaining
  * constant function prototype
  * Return: Always 0
  */
@@ -57,7 +57,7 @@ int _mysetenv(info_t *info)
 
 /**
  * _myunsetenv - func tht removes an environ variable
- * @info: Struct with potential args maintaining 
+ * @info: Struct with potential args maintaining
  * constant function prototype
  * Return: Always 0
  */
@@ -79,7 +79,7 @@ int _myunsetenv(info_t *info)
 
 /**
  * populate_env_list - func to populate environ linked list
- * @info: Struct with potential args maintaining 
+ * @info: Struct with potential args maintaining
  * constant function prototype
  * Return: Always 0
  */
