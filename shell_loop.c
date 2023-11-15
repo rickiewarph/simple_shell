@@ -9,21 +9,21 @@
 
 int hsh(info_t *info, char **av)
 {
-	ssize_t r = 0;
-	int builtin_ret = 0;
+	ssize_t v = 0;
+	int builtin_return = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (v != -1 && builtin_return != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		r = get_input(info);
-		if (r != -1)
+		v = get_input(info);
+		if (v != -1)
 		{
 			set_info(info, av);
-			builtin_ret = find_builtin(info);
-			if (builtin_ret == -1)
+			builtin_return = find_builtin(info);
+			if (builtin_return == -1)
 				find_cmd(info);
 		}
 		else if (interactive(info))
@@ -34,13 +34,13 @@ int hsh(info_t *info, char **av)
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (builtin_return == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
 		exit(info->err_num);
 	}
-	return (builtin_ret);
+	return (builtin_return);
 }
 
 /**
@@ -52,7 +52,7 @@ int hsh(info_t *info, char **av)
 
 int find_builtin(info_t *info)
 {
-	int i, built_in_ret = -1;
+	int m, built_in_return = -1;
 	builtin_table builtintbl[] = {
 		{"exit", _myexit},
 		{"env", _myenv},
@@ -65,14 +65,14 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+	for (m = 0; builtintbl[m].type; m++)
+		if (_strcmp(info->argv[0], builtintbl[m].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_return = builtintbl[m].func(info);
 			break;
 		}
-	return (built_in_ret);
+	return (built_in_return);
 }
 
 /**
@@ -84,7 +84,7 @@ int find_builtin(info_t *info)
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
-	int i, k;
+	int m, n;
 
 	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
@@ -92,10 +92,10 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
-			k++;
-	if (!k)
+	for (m = 0, n = 0; info->arg[m]; m++)
+		if (!is_delim(info->arg[m], " \t\n"))
+			n++;
+	if (!n)
 		return;
 
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);

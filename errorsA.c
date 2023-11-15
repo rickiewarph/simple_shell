@@ -8,24 +8,24 @@
 
 int _erratoi(char *s)
 {
-	int i = 0;
-	unsigned long int result = 0;
+	int m = 0;
+	unsigned long int outcome = 0;
 
 	if (*s == '+')
 		s++;
-	for (i = 0;  s[i] != '\0'; i++)
+	for (m = 0;  s[m] != '\0'; m++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[m] >= '0' && s[m] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - '0');
-			if (result > INT_MAX)
+			outcome *= 10;
+			outcome += (s[m] - '0');
+			if (outcome > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
-	return (result);
+	return (outcome);
 }
 
 /**
@@ -56,8 +56,8 @@ void print_error(info_t *info, char *estr)
 int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
-	int i, count = 0;
-	unsigned int _abs_, current;
+	int m, counter = 0;
+	unsigned int _abs_, cur;
 
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
@@ -65,24 +65,24 @@ int print_d(int input, int fd)
 	{
 		_abs_ = -input;
 		__putchar('-');
-		count++;
+		counter++;
 	}
 	else
 		_abs_ = input;
-	current = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
+	cur = _abs_;
+	for (m = 1000000000; m > 1; m /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs_ / m)
 		{
-			__putchar('0' + current / i);
-			count++;
+			__putchar('0' + cur / m);
+			counter++;
 		}
-		current %= i;
+		cur %= m;
 	}
-	__putchar('0' + current);
-	count++;
+	__putchar('0' + cur);
+	counter++;
 
-	return (count);
+	return (counter);
 }
 
 /**
@@ -99,11 +99,11 @@ char *convert_number(long int num, int base, int flags)
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = num;
+	unsigned long h = num;
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		n = -num;
+		h = -num;
 		sign = '-';
 
 	}
@@ -112,9 +112,9 @@ char *convert_number(long int num, int base, int flags)
 	*ptr = '\0';
 
 	do	{
-		*--ptr = array[n % base];
-		n /= base;
-	} while (n != 0);
+		*--ptr = array[h % base];
+		h /= base;
+	} while (h != 0);
 
 	if (sign)
 		*--ptr = sign;
@@ -129,12 +129,12 @@ char *convert_number(long int num, int base, int flags)
 
 void remove_comments(char *buf)
 {
-	int i;
+	int m;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (m = 0; buf[m] != '\0'; m++)
+		if (buf[m] == '#' && (!m || buf[m - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[m] = '\0';
 			break;
 		}
 }

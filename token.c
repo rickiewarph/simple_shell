@@ -9,42 +9,44 @@
 
 char **strtow(char *str, char *d)
 {
-	int i, j, k, m, numwords = 0;
+	int p, q = 0;
+	int k, m = 0;
+	int nw = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!d)
 		d = " ";
-	for (i = 0; str[i] != '\0'; i++)
-		if (!is_delim(str[i], d) && (is_delim(str[i + 1], d) || !str[i + 1]))
-			numwords++;
+	for (p = 0; str[p] != '\0'; p++)
+		if (!is_delim(str[p], d) && (is_delim(str[p + 1], d) || !str[p + 1]))
+			nw++;
 
-	if (numwords == 0)
+	if (nw == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
+	s = malloc((1 + nw) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (i = 0, j = 0; j < numwords; j++)
+	for (p = 0, q = 0; p < nw; q++)
 	{
-		while (is_delim(str[i], d))
-			i++;
+		while (is_delim(str[p], d))
+			p++;
 		k = 0;
-		while (!is_delim(str[i + k], d) && str[i + k])
+		while (!is_delim(str[p + k], d) && str[p + k])
 			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		s[q] = malloc((k + 1) * sizeof(char));
+		if (!s[q])
 		{
-			for (k = 0; k < j; k++)
+			for (k = 0; k < q; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[j][m] = str[i++];
-		s[j][m] = 0;
+			s[q][m] = str[p++];
+		s[q][m] = 0;
 	}
-	s[j] = NULL;
+	s[q] = NULL;
 	return (s);
 }
 
@@ -57,39 +59,43 @@ char **strtow(char *str, char *d)
 
 char **strtow2(char *str, char d)
 {
-	int i, j, k, m, numwords = 0;
+	int p = 0;
+	int q = 0;
+	int k = 0;
+	int m = 0;
+	int nw = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
-	for (i = 0; str[i] != '\0'; i++)
-		if ((str[i] != d && str[i + 1] == d) ||
-		    (str[i] != d && !str[i + 1]) || str[i + 1] == d)
-			numwords++;
-	if (numwords == 0)
+	for (p = 0; str[p] != '\0'; p++)
+		if ((str[p] != d && str[p + 1] == d) ||
+		    (str[p] != d && !str[p + 1]) || str[p + 1] == d)
+			nw++;
+	if (nw == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
+	s = malloc((1 + nw) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (i = 0, j = 0; j < numwords; j++)
+	for (p = 0, q = 0; q < nw; q++)
 	{
-		while (str[i] == d && str[i] != d)
-			i++;
+		while (str[p] == d && str[p] != d)
+			p++;
 		k = 0;
-		while (str[i + k] != d && str[i + k] && str[i + k] != d)
+		while (str[p + k] != d && str[p + k] && str[p + k] != d)
 			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		s[q] = malloc((k + 1) * sizeof(char));
+		if (!s[q])
 		{
-			for (k = 0; k < j; k++)
+			for (k = 0; k < q; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[j][m] = str[i++];
-		s[j][m] = 0;
+			s[q][m] = str[p++];
+		s[q][m] = 0;
 	}
-	s[j] = NULL;
+	s[q] = NULL;
 	return (s);
 }
