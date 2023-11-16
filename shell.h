@@ -1,8 +1,3 @@
-/**
- * This is a header file containing all function prototypes
- * it was made by @lndukuo & @rickiewarph
- */
-
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
