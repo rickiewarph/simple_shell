@@ -1,3 +1,8 @@
+/**
+ * This is a header file containing all function prototypes
+ * it was made by @lndukuo & @rickiewarph
+ */
+
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
@@ -105,7 +110,7 @@ typedef struct passinfo
 /**
  *struct builtin - has a builtin string and related function
  *@type: builtin command flag
- *@func: function in question
+ *@func: designated function
  */
 
 typedef struct builtin
